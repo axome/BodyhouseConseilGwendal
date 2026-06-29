@@ -1,0 +1,36 @@
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","className":"bh-archive","style":{"spacing":{"padding":{"top":"60px","bottom":"80px","left":"8%","right":"8%"}}},"layout":{"type":"constrained","contentSize":"1140px"}} -->
+<main class="wp-block-group bh-archive" style="padding-top:60px;padding-right:8%;padding-bottom:80px;padding-left:8%"><!-- wp:heading {"className":"bh-section-title","fontSize":"title","fontFamily":"heading"} -->
+<h2 class="wp-block-heading bh-section-title has-heading-font-family has-title-font-size">Nos articles</h2>
+<!-- /wp:heading -->
+
+<!-- wp:query {"queryId":20,"query":{"perPage":12,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":true},"className":"bh-archive__grid","style":{"spacing":{"margin":{"top":"35px"}}}} -->
+<div class="wp-block-query bh-archive__grid" style="margin-top:35px"><!-- wp:post-template {"className":"bh-archive__cards","layout":{"type":"grid","columnCount":3}} -->
+<!-- wp:group {"className":"bh-archive-card","layout":{"type":"default"}} -->
+<div class="wp-block-group bh-archive-card"><!-- wp:post-featured-image {"isLink":true,"style":{"border":{"radius":"5px"}}} /-->
+
+<!-- wp:post-terms {"term":"category","className":"bh-card__cat"} /-->
+
+<!-- wp:post-title {"isLink":true,"level":3,"fontSize":"large","fontFamily":"heading"} /-->
+
+<!-- wp:post-excerpt {"moreText":"Lire","showMoreOnNewLine":false} /-->
+</div>
+<!-- /wp:group -->
+<!-- /wp:post-template -->
+
+<!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"margin":{"top":"50px"}}}} -->
+<!-- wp:query-pagination-previous /-->
+<!-- wp:query-pagination-numbers /-->
+<!-- wp:query-pagination-next /-->
+<!-- /wp:query-pagination -->
+
+<!-- wp:query-no-results -->
+<!-- wp:paragraph -->
+<p>Aucun article pour le moment.</p>
+<!-- /wp:paragraph -->
+<!-- /wp:query-no-results --></div>
+<!-- /wp:query --></main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

@@ -1,0 +1,136 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"settings": {
+		"appearanceTools": true,
+		"layout": {
+			"contentSize": "1140px",
+			"wideSize": "1340px"
+		},
+		"useRootPaddingAwareAlignments": true,
+		"color": {
+			"defaultPalette": false,
+			"defaultGradients": false,
+			"palette": [
+				{ "slug": "text", "color": "#242424", "name": "Texte (noir)" },
+				{ "slug": "primary", "color": "#CE9E80", "name": "Primaire (terracotta)" },
+				{ "slug": "secondary", "color": "#EBCBBB", "name": "Secondaire (sable)" },
+				{ "slug": "accent", "color": "#AA7A61", "name": "Accent" },
+				{ "slug": "cream", "color": "#F8EDE7", "name": "Crème" },
+				{ "slug": "cream-light", "color": "#FFFAF8", "name": "Crème clair" },
+				{ "slug": "rose", "color": "#E7A0A4", "name": "Rose" },
+				{ "slug": "rose-light", "color": "#F7BBBE", "name": "Rose clair" },
+				{ "slug": "bordeaux", "color": "#901C36", "name": "Bordeaux" },
+				{ "slug": "bordeaux-light", "color": "#A2484D", "name": "Bordeaux clair" },
+				{ "slug": "sage", "color": "#8B9C96", "name": "Sauge" },
+				{ "slug": "sage-light", "color": "#D5E3DE", "name": "Sauge clair" },
+				{ "slug": "white", "color": "#FFFFFF", "name": "Blanc" },
+				{ "slug": "border", "color": "#C4CBDB", "name": "Bordure" }
+			]
+		},
+		"typography": {
+			"fluid": false,
+			"customFontSize": true,
+			"fontFamilies": [
+				{
+					"fontFamily": "'League Spartan', sans-serif",
+					"slug": "heading",
+					"name": "League Spartan",
+					"fontFace": [
+						{ "fontFamily": "League Spartan", "fontWeight": "300", "fontStyle": "normal", "src": ["file:./assets/fonts/league-spartan-300.woff2"] },
+						{ "fontFamily": "League Spartan", "fontWeight": "400", "fontStyle": "normal", "src": ["file:./assets/fonts/league-spartan-400.woff2"] },
+						{ "fontFamily": "League Spartan", "fontWeight": "500", "fontStyle": "normal", "src": ["file:./assets/fonts/league-spartan-500.woff2"] },
+						{ "fontFamily": "League Spartan", "fontWeight": "600", "fontStyle": "normal", "src": ["file:./assets/fonts/league-spartan-600.woff2"] },
+						{ "fontFamily": "League Spartan", "fontWeight": "700", "fontStyle": "normal", "src": ["file:./assets/fonts/league-spartan-700.woff2"] }
+					]
+				},
+				{
+					"fontFamily": "'Playfair Display', serif",
+					"slug": "display",
+					"name": "Playfair Display",
+					"fontFace": [
+						{ "fontFamily": "Playfair Display", "fontWeight": "400", "fontStyle": "normal", "src": ["file:./assets/fonts/playfair-400.woff2"] },
+						{ "fontFamily": "Playfair Display", "fontWeight": "400", "fontStyle": "italic", "src": ["file:./assets/fonts/playfair-400-italic.woff2"] },
+						{ "fontFamily": "Playfair Display", "fontWeight": "500", "fontStyle": "normal", "src": ["file:./assets/fonts/playfair-500.woff2"] },
+						{ "fontFamily": "Playfair Display", "fontWeight": "600", "fontStyle": "normal", "src": ["file:./assets/fonts/playfair-600.woff2"] },
+						{ "fontFamily": "Playfair Display", "fontWeight": "600", "fontStyle": "italic", "src": ["file:./assets/fonts/playfair-600-italic.woff2"] },
+						{ "fontFamily": "Playfair Display", "fontWeight": "700", "fontStyle": "normal", "src": ["file:./assets/fonts/playfair-700.woff2"] }
+					]
+				},
+				{
+					"fontFamily": "'Roboto', sans-serif",
+					"slug": "body",
+					"name": "Roboto",
+					"fontFace": [
+						{ "fontFamily": "Roboto", "fontWeight": "400", "fontStyle": "normal", "src": ["file:./assets/fonts/roboto-400.woff2"] },
+						{ "fontFamily": "Roboto", "fontWeight": "500", "fontStyle": "normal", "src": ["file:./assets/fonts/roboto-500.woff2"] },
+						{ "fontFamily": "Roboto", "fontWeight": "600", "fontStyle": "normal", "src": ["file:./assets/fonts/roboto-600.woff2"] },
+						{ "fontFamily": "Roboto", "fontWeight": "700", "fontStyle": "normal", "src": ["file:./assets/fonts/roboto-700.woff2"] }
+					]
+				},
+				{
+					"fontFamily": "'Manrope', sans-serif",
+					"slug": "alt",
+					"name": "Manrope",
+					"fontFace": [
+						{ "fontFamily": "Manrope", "fontWeight": "400", "fontStyle": "normal", "src": ["file:./assets/fonts/manrope-400.woff2"] },
+						{ "fontFamily": "Manrope", "fontWeight": "500", "fontStyle": "normal", "src": ["file:./assets/fonts/manrope-500.woff2"] },
+						{ "fontFamily": "Manrope", "fontWeight": "600", "fontStyle": "normal", "src": ["file:./assets/fonts/manrope-600.woff2"] },
+						{ "fontFamily": "Manrope", "fontWeight": "700", "fontStyle": "normal", "src": ["file:./assets/fonts/manrope-700.woff2"] }
+					]
+				}
+			],
+			"fontSizes": [
+				{ "slug": "small", "size": "14px", "name": "Petit" },
+				{ "slug": "medium", "size": "16px", "name": "Moyen" },
+				{ "slug": "large", "size": "18px", "name": "Grand" },
+				{ "slug": "x-large", "size": "25px", "name": "Très grand" },
+				{ "slug": "title", "size": "45px", "name": "Titre section" },
+				{ "slug": "title-lg", "size": "50px", "name": "Titre large" },
+				{ "slug": "hero", "size": "75px", "name": "Hero" },
+				{ "slug": "stat", "size": "90px", "name": "Statistique" }
+			]
+		},
+		"spacing": {
+			"units": ["px", "%", "em", "rem", "vw", "vh"],
+			"spacingSizes": [
+				{ "slug": "20", "size": "10px", "name": "1" },
+				{ "slug": "30", "size": "16px", "name": "2" },
+				{ "slug": "40", "size": "24px", "name": "3" },
+				{ "slug": "50", "size": "35px", "name": "4" },
+				{ "slug": "60", "size": "60px", "name": "5" },
+				{ "slug": "70", "size": "100px", "name": "6" }
+			]
+		}
+	},
+	"styles": {
+		"color": {
+			"background": "#FFFFFF",
+			"text": "#242424"
+		},
+		"typography": {
+			"fontFamily": "'Roboto', sans-serif",
+			"fontSize": "16px",
+			"lineHeight": "1.5"
+		},
+		"elements": {
+			"h1": { "typography": { "fontFamily": "'League Spartan', sans-serif", "fontWeight": "600", "lineHeight": "1" } },
+			"h2": { "typography": { "fontFamily": "'League Spartan', sans-serif", "fontWeight": "600", "fontSize": "40px", "lineHeight": "1.1" } },
+			"h3": { "typography": { "fontFamily": "'League Spartan', sans-serif", "fontWeight": "500", "fontSize": "25px", "lineHeight": "1.2" } },
+			"link": { "color": { "text": "inherit" }, ":hover": { "color": { "text": "var(--wp--preset--color--accent)" } } },
+			"button": {
+				"border": { "radius": "2px" },
+				"color": { "background": "#242424", "text": "#FFFFFF" },
+				"typography": { "fontFamily": "'Roboto', sans-serif", "fontSize": "16px", "fontWeight": "400", "textTransform": "uppercase", "lineHeight": "1" },
+				"spacing": { "padding": { "top": "12px", "bottom": "12px", "left": "35px", "right": "35px" } }
+			}
+		}
+	},
+	"templateParts": [
+		{ "name": "header", "title": "En-tête", "area": "header" },
+		{ "name": "footer", "title": "Pied de page", "area": "footer" }
+	],
+	"customTemplates": [
+		{ "name": "page-conseils-sexo", "title": "Page Conseils Sexo", "postTypes": ["page"] }
+	]
+}
