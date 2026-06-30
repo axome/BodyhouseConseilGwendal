@@ -128,6 +128,90 @@
 } )();
 
 /**
+ * Sous-menus du drawer : chaque item parent reçoit un bouton chevron
+ * qui déplie/replie son sous-menu en accordéon (un seul ouvert à la fois).
+ */
+( function () {
+	'use strict';
+
+	var CHEVRON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
+
+	function initSubmenus() {
+		var parents = document.querySelectorAll( '.bh-drawer__main .menu-item-has-children' );
+		if ( ! parents.length ) {
+			return;
+		}
+
+		parents.forEach( function ( parent ) {
+			var link = parent.querySelector( ':scope > a' );
+			var sub = parent.querySelector( ':scope > .sub-menu' );
+			if ( ! link || ! sub ) {
+				return;
+			}
+
+			// enveloppe lien + chevron dans une ligne flex (.bh-row)
+			var row = document.createElement( 'div' );
+			row.className = 'bh-row';
+			link.insertAdjacentElement( 'beforebegin', row );
+			row.appendChild( link );
+
+			var btn = document.createElement( 'button' );
+			btn.type = 'button';
+			btn.className = 'bh-submenu-toggle';
+			btn.setAttribute( 'aria-label', 'Afficher le sous-menu' );
+			btn.setAttribute( 'aria-expanded', 'false' );
+			btn.innerHTML = CHEVRON;
+			row.appendChild( btn );
+
+			// referme un item avec l'animation de sortie
+			function closeItem( item ) {
+				if ( ! item.classList.contains( 'is-open' ) ) {
+					return;
+				}
+				item.classList.remove( 'is-open' );
+				item.classList.add( 'is-closing' );
+				var tgl = item.querySelector( ':scope > .bh-row .bh-submenu-toggle' );
+				if ( tgl ) { tgl.setAttribute( 'aria-expanded', 'false' ); }
+				var sub = item.querySelector( ':scope > .sub-menu' );
+				var last = sub ? sub.querySelector( ':scope > li:last-child' ) : null;
+				var done = function () {
+					item.classList.remove( 'is-closing' );
+					if ( last ) { last.removeEventListener( 'animationend', done ); }
+				};
+				if ( last ) {
+					last.addEventListener( 'animationend', done );
+				} else {
+					done();
+				}
+			}
+
+			btn.addEventListener( 'click', function () {
+				var willOpen = ! parent.classList.contains( 'is-open' );
+
+				// accordéon : referme les autres items ouverts de même niveau
+				parent.parentElement
+					.querySelectorAll( ':scope > .menu-item-has-children.is-open' )
+					.forEach( function ( s ) { if ( s !== parent ) { closeItem( s ); } } );
+
+				if ( willOpen ) {
+					parent.classList.remove( 'is-closing' );
+					parent.classList.add( 'is-open' );
+					btn.setAttribute( 'aria-expanded', 'true' );
+				} else {
+					closeItem( parent );
+				}
+			} );
+		} );
+	}
+
+	if ( document.readyState === 'loading' ) {
+		document.addEventListener( 'DOMContentLoaded', initSubmenus );
+	} else {
+		initSubmenus();
+	}
+} )();
+
+/**
  * FAQ : ouverture/fermeture animée (smooth) des <details>.
  * Anime la hauteur du contenu et ferme les autres (accordéon).
  */
@@ -145,45 +229,30 @@
 			if ( ! summary ) {
 				return;
 			}
-			// conteneur du contenu (tout sauf le summary) — on l'enveloppe
+			// on enveloppe le contenu (tout sauf le summary) dans .bh-faq__content > .bh-faq__inner.
+			// L'animation se fait en pur CSS (grid-template-rows 0fr<->1fr) : aucune mesure de
+			// hauteur en JS, donc pas de saccade.
 			var content = document.createElement( 'div' );
 			content.className = 'bh-faq__content';
+			var inner = document.createElement( 'div' );
+			inner.className = 'bh-faq__inner';
 			var node = summary.nextSibling;
 			while ( node ) {
 				var next = node.nextSibling;
-				content.appendChild( node );
+				inner.appendChild( node );
 				node = next;
 			}
+			content.appendChild( inner );
 			item.appendChild( content );
+
+			// le <details> doit rester "open" en permanence pour que le contenu soit dans
+			// le flux (sinon le navigateur le masque et l'animation grid ne joue pas).
+			// L'ouverture/fermeture visuelle est gérée uniquement par la classe .is-open.
+			item.setAttribute( 'open', '' );
 
 			summary.addEventListener( 'click', function ( e ) {
 				e.preventDefault();
-				var isOpen = item.classList.contains( 'is-open' );
-
-				// plusieurs questions peuvent rester ouvertes simultanément
-				// (pas de fermeture automatique des autres)
-
-				if ( isOpen ) {
-					// fermeture : le chevron tourne immédiatement (classe retirée tout de suite)
-					item.classList.remove( 'is-open' );
-					content.style.height = content.scrollHeight + 'px';
-					requestAnimationFrame( function () { content.style.height = '0px'; } );
-					content.addEventListener( 'transitionend', function te() {
-						item.removeAttribute( 'open' );
-						content.removeEventListener( 'transitionend', te );
-					} );
-				} else {
-					item.setAttribute( 'open', '' );
-					item.classList.add( 'is-open' );        // chevron tourne tout de suite
-					content.style.height = '0px';
-					requestAnimationFrame( function () {
-						content.style.height = content.scrollHeight + 'px';
-					} );
-					content.addEventListener( 'transitionend', function te() {
-						content.style.height = 'auto';
-						content.removeEventListener( 'transitionend', te );
-					} );
-				}
+				item.classList.toggle( 'is-open' );
 			} );
 		} );
 	}

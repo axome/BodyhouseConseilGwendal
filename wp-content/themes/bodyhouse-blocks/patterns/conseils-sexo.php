@@ -30,7 +30,7 @@ $img = get_theme_file_uri( 'assets/images/' );
 
 <!-- wp:buttons {"className":"bh-hero__btns"} -->
 <div class="wp-block-buttons bh-hero__btns"><!-- wp:button {"backgroundColor":"white","textColor":"text","className":"bh-btn bh-btn--light","style":{"border":{"radius":"2px"}}} -->
-<div class="wp-block-button bh-btn bh-btn--light"><a class="wp-block-button__link has-text-color has-white-background-color has-background wp-element-button" href="#explorer" style="border-radius:2px">Explorer les articles</a></div>
+<div class="wp-block-button bh-btn bh-btn--light"><a class="wp-block-button__link has-text-color has-text-text-color has-white-background-color has-background wp-element-button" href="#explorer" style="border-radius:2px">Explorer les articles</a></div>
 <!-- /wp:button -->
 
 <!-- wp:button {"className":"bh-btn bh-btn--outline","style":{"border":{"radius":"2px","width":"1px","color":"#ffffff"}}} -->
@@ -146,7 +146,7 @@ echo bodyhouse_theme_row( $img . 'vignette-comment-nettoyer-son-sextoy-1024x1024
 
 <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"margin":{"top":"48px"}}}} -->
 <div class="wp-block-buttons" style="margin-top:48px"><!-- wp:button {"backgroundColor":"white","textColor":"text","className":"bh-btn bh-btn--light","style":{"border":{"radius":"2px"}}} -->
-<div class="wp-block-button bh-btn bh-btn--light"><a class="wp-block-button__link has-text-color has-white-background-color has-background wp-element-button" href="/blog/observatoire/" style="border-radius:2px">Voir tous les chiffres</a></div>
+<div class="wp-block-button bh-btn bh-btn--light"><a class="wp-block-button__link has-text-color has-text-text-color has-white-background-color has-background wp-element-button" href="/blog/observatoire/" style="border-radius:2px">Voir tous les chiffres</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></section>
 <!-- /wp:group -->

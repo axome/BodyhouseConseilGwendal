@@ -13,6 +13,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 define( 'BODYHOUSE_BLOCKS_VERSION', '1.0.0' );
 
+// Blocs ACF Pro (le fichier ne fait rien si ACF Pro n'est pas actif).
+require_once get_theme_file_path( 'inc/acf-blocks.php' );
+
 /**
  * Supports de thème.
  */
@@ -23,8 +26,37 @@ function bodyhouse_blocks_setup() {
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption', 'style', 'script' ) );
 	add_editor_style( 'assets/css/bodyhouse.css' );
+
+	// Réactive l'interface classique « Apparence → Menus » (cachée par défaut sur un thème FSE).
+	add_theme_support( 'menus' );
+	register_nav_menus(
+		array(
+			'bh_drawer' => __( 'Menu principal (panneau latéral)', 'bodyhouse-blocks' ),
+		)
+	);
 }
 add_action( 'after_setup_theme', 'bodyhouse_blocks_setup' );
+
+/**
+ * Rend le menu « bh_drawer » via un shortcode utilisable dans le template-part HTML.
+ * Usage : [bh_drawer_menu]
+ */
+function bodyhouse_drawer_menu_shortcode() {
+	if ( ! has_nav_menu( 'bh_drawer' ) ) {
+		return '';
+	}
+	return wp_nav_menu(
+		array(
+			'theme_location' => 'bh_drawer',
+			'container'      => false,
+			'menu_class'     => 'bh-drawer__main',
+			'fallback_cb'    => false,
+			'echo'           => false,
+			'depth'          => 0, // 0 = profondeur illimitée (sous-menus pris en charge)
+		)
+	);
+}
+add_shortcode( 'bh_drawer_menu', 'bodyhouse_drawer_menu_shortcode' );
 
 /**
  * Feuille de style principale (front).
@@ -34,7 +66,7 @@ function bodyhouse_blocks_styles() {
 		'bodyhouse-blocks-main',
 		get_theme_file_uri( 'assets/css/bodyhouse.css' ),
 		array(),
-		BODYHOUSE_BLOCKS_VERSION
+		filemtime( get_theme_file_path( 'assets/css/bodyhouse.css' ) ) // cache-buster auto
 	);
 }
 add_action( 'wp_enqueue_scripts', 'bodyhouse_blocks_styles' );
@@ -47,7 +79,7 @@ function bodyhouse_blocks_scripts() {
 		'bodyhouse-blocks-hero',
 		get_theme_file_uri( 'assets/js/hero.js' ),
 		array(),
-		BODYHOUSE_BLOCKS_VERSION,
+		filemtime( get_theme_file_path( 'assets/js/hero.js' ) ), // cache-buster auto
 		true
 	);
 }

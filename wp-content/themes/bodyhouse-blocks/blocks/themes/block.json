@@ -1,0 +1,19 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "acf/bh-themes",
+	"title": "Body House — Thématiques",
+	"description": "Section « Explorez par thèmes » : liste de thématiques (vignette, titre, description, lien).",
+	"category": "bodyhouse",
+	"icon": "grid-view",
+	"keywords": ["thématiques", "bodyhouse", "thèmes"],
+	"supports": {
+		"anchor": true,
+		"jsx": true
+	},
+	"acf": {
+		"mode": "preview",
+		"renderTemplate": "render.php"
+	},
+	"textdomain": "bodyhouse-blocks"
+}
