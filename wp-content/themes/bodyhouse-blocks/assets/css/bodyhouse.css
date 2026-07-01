@@ -193,6 +193,7 @@
 
 /* empêche le scroll du body quand le menu est ouvert */
 body.bh-no-scroll { overflow: hidden; }
+body { overflow-x: hidden; }
 
 /* transition de flou douce à l'ouverture ET à la fermeture du menu */
 main,
