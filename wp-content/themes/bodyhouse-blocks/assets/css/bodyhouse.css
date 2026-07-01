@@ -13,6 +13,7 @@
 	--bh-cream-light: #fffaf8;
 	--bh-border: #c4cbdb;
 	--bh-shadow: -10px 32px 54px 0px rgba(149, 155, 166, .302);
+	--bh-header-h: 104px;
 }
 
 /* ---- Header : barre d'annonce + nav ----------------------------------- */
@@ -71,7 +72,6 @@
 .bh-burger[aria-expanded="true"] .bh-burger__lines span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* ---- Menu off-canvas (drawer) sous le header -------------------------- */
-:root { --bh-header-h: 104px; }
 
 .bh-drawer-overlay {
 	position: fixed; left: 0; right: 0; bottom: 0; top: var(--bh-header-h);
@@ -503,9 +503,9 @@ main > .bh-hero:first-child { margin-top: 0 !important; }
 .bh-quote-card { color: var(--bh-text); }
 .bh-quote-card * { color: var(--bh-text) !important; }
 .bh-quote-card__text {
-	font-family: 'Playfair Display', serif;
+	font-family: 'League Spartan', sans-serif;
 	font-style: italic;
-	font-size: 15px;
+	font-size: 16px;
 	line-height: 1.6;
 	margin: 0 0 18px;
 }
@@ -564,7 +564,6 @@ main > .bh-hero:first-child { margin-top: 0 !important; }
 .bh-card-feature .wp-block-post { flex: 1; }
 .bh-card-feature .wp-block-post {
 	background-color: var(--bh-cream);
-	border-radius: 0;
 	overflow: hidden;
 	height: 100%;
 	display: flex;
@@ -815,7 +814,6 @@ main > .bh-hero:first-child { margin-top: 0 !important; }
 /* la colonne image s'étire sur toute la hauteur de la ligne (qui grandit avec les
    questions ouvertes). On surcharge le align-self:center que WP pose via
    is-vertically-aligned-center, sinon l'image reste centrée à sa hauteur. */
-.bh-faq__imgcol.is-vertically-aligned-center,
 .bh-faq__imgcol {
 	align-self: stretch !important;
 	display: flex !important;
