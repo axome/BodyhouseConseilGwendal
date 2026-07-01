@@ -438,8 +438,8 @@ main > .bh-hero:first-child { margin-top: 0 !important; }
 }
 /* carte citation en overlay, petite, débordant sur le bord gauche de l'image */
 .bh-hero__imgcol .bh-quote-card {
-	position: absolute; top: 28%; left: -200px; right: auto;
-	width: 520px !important; max-width: 520px !important;
+	position: absolute; top: calc(45% + 30px); left: -350px; right: auto;
+	width: 495px !important; max-width: 495px !important;
 	box-sizing: border-box;
 	background: #fff !important; color: var(--bh-text);
 	border-radius: 10px; padding: 28px 32px;
