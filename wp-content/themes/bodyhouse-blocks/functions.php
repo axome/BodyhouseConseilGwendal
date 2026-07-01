@@ -25,7 +25,11 @@ function bodyhouse_blocks_setup() {
 	add_theme_support( 'editor-styles' );
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption', 'style', 'script' ) );
-	add_editor_style( 'assets/css/bodyhouse.css' );
+	// NB : on n'utilise PAS add_editor_style() ici. Cette API préfixe tous les
+	// sélecteurs avec .editor-styles-wrapper et transforme « body » → wrapper,
+	// ce qui casse les règles basées sur body / .wp-site-blocks et donne un
+	// rendu différent du front. Le CSS est injecté tel quel dans l'iframe de
+	// l'éditeur via enqueue_block_assets (voir bodyhouse_blocks_styles ci-dessous).
 
 	// Réactive l'interface classique « Apparence → Menus » (cachée par défaut sur un thème FSE).
 	add_theme_support( 'menus' );
@@ -59,7 +63,12 @@ function bodyhouse_drawer_menu_shortcode() {
 add_shortcode( 'bh_drawer_menu', 'bodyhouse_drawer_menu_shortcode' );
 
 /**
- * Feuille de style principale (front).
+ * Feuille de style principale.
+ *
+ * Chargée via enqueue_block_assets : ce hook se déclenche à la fois sur le
+ * front ET dans l'éditeur de blocs, où WordPress injecte la feuille telle
+ * quelle dans l'iframe (sans réécrire les sélecteurs, contrairement à
+ * add_editor_style). Résultat : un rendu strictement identique des deux côtés.
  */
 function bodyhouse_blocks_styles() {
 	wp_enqueue_style(
@@ -69,7 +78,7 @@ function bodyhouse_blocks_styles() {
 		filemtime( get_theme_file_path( 'assets/css/bodyhouse.css' ) ) // cache-buster auto
 	);
 }
-add_action( 'wp_enqueue_scripts', 'bodyhouse_blocks_styles' );
+add_action( 'enqueue_block_assets', 'bodyhouse_blocks_styles' );
 
 /**
  * Script de l'effet de zoom au scroll sur l'image du hero.

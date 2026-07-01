@@ -902,6 +902,21 @@ main > .bh-hero:first-child { margin-top: 0 !important; }
 }
 
 /* ---- Éditeur Gutenberg uniquement ------------------------------------ */
+/* Réconcilie le canevas de contenu avec le front.
+   Front : template page-conseils-sexo → <main layout:default> → wp:post-content
+   SANS contrainte. Les sections (groupes constrained 1140px) occupent donc
+   toute la largeur (fond bord à bord) et centrent leur contenu à 1140px.
+   Éditeur de contenu : WordPress contraint la racine du canevas à la contentSize
+   du theme.json (1140px), ce qui bride les sections plein écran. On neutralise
+   cette contrainte de racine pour retrouver le rendu du front.
+   (Ces règles sont sans effet sur le front : .editor-styles-wrapper n'y existe pas.)
+   Le cœur bride la racine via :
+     .block-editor-block-list__layout.is-root-container > :where(:not(.alignleft):not(.alignright):not(.alignfull))
+   On surclasse ce sélecteur (3 classes > 2) pour libérer la largeur. */
+.editor-styles-wrapper .block-editor-block-list__layout.is-root-container > * {
+	max-width: none;
+}
+
 .editor-styles-wrapper .bh-latest__grid { align-items: flex-start !important; }
 .editor-styles-wrapper .bh-card-feature .wp-block-post-featured-image img {
 	height: 280px !important;
