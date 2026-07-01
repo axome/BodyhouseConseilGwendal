@@ -135,7 +135,10 @@ function bodyhouse_theme_row( $img_url, $title, $link, $desc ) {
 	$img_url = esc_url( $img_url );
 	$link    = esc_url( $link );
 	$title_e = wp_kses( $title, array() );
-	$desc_e  = esc_html( $desc );
+	// La description peut venir d'un champ WYSIWYG (HTML). On retire le <p> englobant
+	// (invalide dans un <span>) mais on garde le formatage inline (gras, italique, liens).
+	$desc_e  = wp_kses( $desc, array( 'strong' => array(), 'b' => array(), 'em' => array(), 'i' => array(), 'u' => array(), 'br' => array(), 'a' => array( 'href' => array(), 'target' => array(), 'rel' => array() ) ) );
+	$desc_e  = trim( preg_replace( '#</?p[^>]*>#i', '', $desc_e ) );
 
 	return <<<HTML
 <a class="bh-theme-row" href="{$link}">

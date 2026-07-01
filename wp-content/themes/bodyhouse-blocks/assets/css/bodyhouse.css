@@ -373,7 +373,11 @@ main > .bh-hero:first-child { margin-top: 0 !important; }
 	background-color: #fff;
 	color: var(--bh-text);
 }
-.bh-btn--light .wp-block-button__link:hover { opacity: .92; }
+.bh-btn--light .wp-block-button__link:hover {
+	opacity: .92;
+	transform: translateY(-4px);
+	box-shadow: 0 10px 22px rgba(0,0,0,.25);
+}
 
 .bh-btn--outline .wp-block-button__link {
 	background-color: var(--bh-text);
@@ -537,8 +541,8 @@ main > .bh-hero:first-child { margin-top: 0 !important; }
 	display: inline-block;
 	text-transform: uppercase;
 	font-family: 'Roboto', sans-serif;
-	font-size: 11px;
-	font-weight: 500;
+	font-size: 13px;
+	font-weight: 700;
 	color: var(--bh-text);
 	text-decoration: none;
 	letter-spacing: .05em;
@@ -619,12 +623,14 @@ main > .bh-hero:first-child { margin-top: 0 !important; }
 	align-items: center !important;
 	flex-direction: row !important;
 }
-.bh-card-list .bh-card-row > .wp-block-column { align-self: center; margin: 0; }
-.bh-card-list .bh-card-row > .wp-block-column:first-child { flex: 0 0 239px !important; width: 239px !important; max-width: 239px !important; }
-.bh-card-list .wp-block-post-featured-image { margin: 0; width: 239px; }
+.bh-card-list .bh-card-row > .wp-block-column { align-self: center; margin: 0; min-width: 0; overflow: hidden; }
+.bh-card-list .bh-card-row > .wp-block-column:first-child { flex-shrink: 0; }
+.bh-card-list .bh-card-row > .wp-block-column:last-child { flex: 1 1 0; min-width: 0; }
+.bh-card-list .wp-block-post-featured-image { margin: 0; }
 .bh-card-list .wp-block-post-featured-image img {
-	width: 239px !important;
-	height: 239px !important;
+	width: 100% !important;
+	height: auto !important;
+	aspect-ratio: 1 / 1;
 	object-fit: cover;
 	border-radius: 5px;
 	max-width: none !important;
@@ -729,7 +735,7 @@ main > .bh-hero:first-child { margin-top: 0 !important; }
 }
 .bh-theme-row__text { flex: 1; display: flex; flex-direction: column; gap: 8px; }
 .bh-theme-row__title {
-	font-family: 'League Spartan', sans-serif; font-size: 30px; font-weight: 700;
+	font-family: 'League Spartan', sans-serif; font-size: 26px; font-weight: 500;
 	line-height: 1.1; color: var(--bh-text);
 }
 .bh-theme-row__desc { font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: 300; line-height: 1.5; color: #6a6a6a; max-width: 640px; }
@@ -759,6 +765,11 @@ main > .bh-hero:first-child { margin-top: 0 !important; }
 /* trait doré sous le titre de la section thèmes */
 .bh-themes .bh-divider.wp-block-separator { border-top-color: var(--bh-primary); }
 
+/* supprime le margin-block automatique entre sections Gutenberg */
+:root :where(.is-layout-flow) > * { margin-block-start: 15px; margin-block-end: 0; }
+.is-layout-flow > .bh-observatory,
+.is-layout-flow > .bh-faq { margin-block-start: 0 !important; margin-block-end: 0 !important; }
+
 /* ---- Observatoire ----------------------------------------------------- */
 /* Section observatoire (fond sombre) — force le blanc, indépendant des presets */
 .bh-observatory .bh-section-title,
@@ -787,6 +798,12 @@ main > .bh-hero:first-child { margin-top: 0 !important; }
 .bh-stat__desc { opacity: .85; max-width: none; white-space: nowrap; margin: 56px auto 0; font-weight: 300; font-size: 16px; line-height: 1.6; }
 
 /* ---- FAQ : 2 colonnes (questions à gauche, image à droite) ------------ */
+.bh-faq {
+	padding-top: 31px !important;
+	padding-right: 0 !important;
+	padding-bottom: 80px !important;
+	padding-left: 8% !important;
+}
 .bh-faq__cols {
 	max-width: none !important; width: 100% !important;
 	margin-left: 0 !important; margin-right: 0 !important;
@@ -801,16 +818,15 @@ main > .bh-hero:first-child { margin-top: 0 !important; }
 .bh-faq__imgcol {
 	align-self: stretch !important;
 	display: flex !important;
+	margin-right: -1% !important;
+	margin-top: -31px !important;
 }
 .bh-faq__media {
-	width: 100%; min-height: 510.23px; height: auto; align-self: stretch; flex: 1;
-	/* zoomé dès le départ : largeur figée à 130%, pas de "dézoom" quand la colonne s'allonge */
-	background-size: 110% auto; background-position: center top; background-repeat: no-repeat;
-	border-radius: 4px;
-	/* pas de transition de hauteur sur l'image : elle suit le flex stretch instantanément,
-	   ce qui évite le saccadement (repaint du background à chaque frame). */
+	width: 100%; min-height: 0; height: 100%; align-self: stretch; flex: 1;
+	background-size: cover; background-position: center top; background-repeat: no-repeat;
+	border-radius: 0;
 	will-change: auto;
-	transform: translateZ(0); /* compositing : le redimensionnement ne force pas de repaint coûteux */
+	transform: translateZ(0);
 }
 @media (max-width: 900px) { .bh-faq__imgcol { display: none; } }
 
@@ -884,4 +900,10 @@ main > .bh-hero:first-child { margin-top: 0 !important; }
 	.bh-btn .wp-block-button__link { padding: 10px 20px; }
 	.bh-latest__grid,
 	.bh-themes__row { flex-direction: column; }
+}
+
+/* ---- Éditeur Gutenberg uniquement ------------------------------------ */
+.editor-styles-wrapper .bh-latest__grid { align-items: flex-start !important; }
+.editor-styles-wrapper .bh-card-feature .wp-block-post-featured-image img {
+	height: 280px !important;
 }

@@ -48,7 +48,7 @@ if ( ! empty( $block['className'] ) ) {
 			<h1 class="wp-block-heading bh-hero__title has-heading-font-family has-hero-font-size"><?php echo esc_html( $title ); ?><br><span class="bh-hero__title-accent"><?php echo esc_html( $title_accent ); ?></span></h1>
 
 			<?php if ( $intro ) : ?>
-				<p class="bh-hero__intro has-large-font-size"><?php echo esc_html( $intro ); ?></p>
+				<div class="bh-hero__intro has-large-font-size"><?php echo wp_kses_post( $intro ); ?></div>
 			<?php endif; ?>
 
 			<div class="wp-block-buttons bh-hero__btns">
@@ -65,7 +65,7 @@ if ( ! empty( $block['className'] ) ) {
 			<div class="bh-hero__media" style="background-image:url('<?php echo esc_url( $image_url ); ?>')"></div>
 			<?php if ( $quote ) : ?>
 				<div class="bh-quote-card">
-					<p class="bh-quote-card__text"><?php echo esc_html( $quote ); ?></p>
+					<div class="bh-quote-card__text"><?php echo wp_kses_post( $quote ); ?></div>
 					<?php if ( $quote_author ) : ?>
 						<p class="bh-quote-card__author"><?php echo esc_html( $quote_author ); ?></p>
 					<?php endif; ?>
