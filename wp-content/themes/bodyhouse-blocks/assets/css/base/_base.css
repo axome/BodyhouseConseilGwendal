@@ -1,0 +1,55 @@
+/* ---- Reset / styles de base -------------------------------------------- */
+body {
+	font-family: 'Roboto', sans-serif;
+	color: var(--bh-text);
+	line-height: 1.5;
+	margin: 0;
+}
+body { overflow-x: hidden; }
+
+/* empêche le scroll du body quand le menu est ouvert */
+body.bh-no-scroll { overflow: hidden; }
+
+/* transition de flou douce à l'ouverture ET à la fermeture du menu */
+main,
+.wp-site-blocks > footer {
+	transition: filter .32s ease;
+}
+/* menu ouvert : flou sur le contenu de la page (main + footer) uniquement,
+   surtout pas sur la barre d'annonce ni le header/nav ni le drawer.
+   overflow:clip confine le halo de flou pour qu'il ne bave pas sur le header. */
+body.bh-no-scroll main,
+body.bh-no-scroll .wp-site-blocks > footer {
+	filter: blur(4px);
+	overflow: clip;
+}
+/* le drawer et son overlay restent nets (ils ne sont pas dans main/footer) */
+
+/* colle le hero au header : pas de marge sur le <main> */
+.wp-site-blocks main { margin-top: 0 !important; }
+.wp-site-blocks > main:first-child,
+main > .bh-hero:first-child { margin-top: 0 !important; }
+
+/* supprime le margin-block automatique entre sections Gutenberg */
+:root :where(.is-layout-flow) > * { margin-block-start: 15px; margin-block-end: 0; }
+.is-layout-flow > .bh-observatory,
+.is-layout-flow > .bh-faq { margin-block-start: 0 !important; margin-block-end: 0 !important; }
+
+/* ---- Titres génériques -------------------------------------------------- */
+.bh-overline {
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+	font-weight: 300;
+	line-height: 20px;
+	text-transform: uppercase;
+	letter-spacing: .04em;
+	margin: 0 0 8px;
+}
+
+.bh-section-title {
+	font-family: 'League Spartan', sans-serif;
+	font-weight: 600;
+	font-size: 45px;
+	line-height: 1;
+	margin: 0;
+}

@@ -1,0 +1,101 @@
+/* ---- Header : barre d'annonce + nav ----------------------------------- */
+/* le header passe au-dessus du drawer (z-index 999) avec un fond opaque,
+   pour recouvrir nettement le halo de flou du contenu quand le menu est ouvert */
+.bh-announce,
+.bh-nav {
+	position: relative;
+	z-index: 1000;
+}
+.bh-announce {
+	background-color: #F1DBCF;
+	margin: 0;
+	height: 38px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 12px;
+}
+/* fenêtre visible : masque tout le reste de la piste */
+.bh-announce__viewport {
+	height: 38px;
+	overflow: hidden;
+}
+/* piste verticale : un message par "page" de la hauteur du bandeau,
+   on la translate vers le haut pour faire défiler du haut vers le bas */
+.bh-announce__track {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	transition: transform .6s cubic-bezier(.4,0,.2,1);
+	will-change: transform;
+}
+.bh-announce__text {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 38px;
+	margin: 0;
+	padding: 0 20px;
+	font-family: 'Roboto', sans-serif;
+	font-size: 14px;
+	color: var(--bh-text);
+	letter-spacing: .01em;
+	text-align: center;
+	white-space: nowrap;
+	opacity: .35;
+	transition: opacity .25s ease;
+}
+.bh-announce__text.is-active { opacity: 1; }
+.bh-announce__text strong { font-weight: 600; }
+.bh-announce__text a { color: var(--bh-text); font-weight: 600; text-decoration: underline; }
+.bh-announce__text a:hover { color: var(--bh-accent); }
+
+/* flèches de navigation manuelle */
+.bh-announce__nav {
+	background: none;
+	border: none;
+	cursor: pointer;
+	color: var(--bh-text);
+	font-size: 15px;
+	line-height: 1;
+	padding: 6px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	transition: color .2s ease;
+}
+.bh-announce__nav:hover { color: var(--bh-accent); }
+
+.bh-nav {
+	margin: 0;
+	border-bottom: 1px solid #f0e7e2;
+	padding-right: 1.5% !important;
+}
+.bh-nav__left { flex: 1; }
+.bh-nav__icons { flex: 1; justify-content: flex-end; gap: 20px; }
+.bh-nav__logo { display: inline-flex; align-items: center; }
+.bh-nav__logo img { display: block; height: 26px; width: auto; }
+.bh-icon { color: var(--bh-text); display: inline-flex; }
+.bh-icon:hover { color: var(--bh-accent); }
+
+/* burger + label "Menu" -> croix */
+.bh-burger {
+	background: none; border: none; cursor: pointer;
+	display: inline-flex; align-items: center; gap: 12px; padding: 4px 0;
+}
+.bh-burger__lines {
+	display: inline-flex; flex-direction: column; justify-content: center;
+	gap: 5px; width: 24px; height: 18px; position: relative;
+}
+.bh-burger__lines span {
+	display: block; width: 24px; height: 2px; background: var(--bh-text); border-radius: 2px;
+	transition: transform .3s ease, opacity .2s ease;
+}
+.bh-burger__label {
+	font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 500;
+	text-transform: uppercase; letter-spacing: .05em; color: var(--bh-text);
+}
+/* état ouvert : les 3 traits deviennent un X */
+.bh-burger[aria-expanded="true"] .bh-burger__lines span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.bh-burger[aria-expanded="true"] .bh-burger__lines span:nth-child(2) { opacity: 0; }
+.bh-burger[aria-expanded="true"] .bh-burger__lines span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }

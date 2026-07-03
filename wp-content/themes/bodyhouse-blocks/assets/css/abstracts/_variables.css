@@ -1,0 +1,12 @@
+/* ---- Variables globales (custom properties) --------------------------- */
+:root {
+	--bh-text: #242424;
+	--bh-primary: #ce9e80;
+	--bh-secondary: #ebcbbb;
+	--bh-accent: #aa7a61;
+	--bh-cream: #f8ede7;
+	--bh-cream-light: #fffaf8;
+	--bh-border: #c4cbdb;
+	--bh-shadow: -10px 32px 54px 0px rgba(149, 155, 166, .302);
+	--bh-header-h: 104px;
+}

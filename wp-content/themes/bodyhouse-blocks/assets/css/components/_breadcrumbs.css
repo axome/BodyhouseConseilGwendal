@@ -1,0 +1,4 @@
+/* ---- Breadcrumbs ------------------------------------------------------ */
+.bh-breadcrumbs a { color: #fff; text-decoration: none; }
+.bh-breadcrumbs a:hover { text-decoration: underline; }
+.bh-breadcrumbs .bh-current { opacity: .7; }

@@ -1,0 +1,16 @@
+/* ---- Réassurance (bandeau d'icônes au-dessus du footer) ---------------- */
+/* fond en dégradé : rosé sur les bords, clair au centre (comme la prod) */
+.bh-reassurance {
+	gap: 24px;
+	background: linear-gradient(0deg, rgba(241,219,207,.5) 0%, #FFFFFF 90%) !important;
+}
+.bh-reassure {
+	flex: 1 1 200px;
+	display: flex; flex-direction: column; align-items: center; text-align: center;
+	gap: 8px; font-family: 'Roboto', sans-serif;
+}
+.bh-reassure__ico { color: var(--bh-text); display: inline-flex; }
+.bh-reassure__ico svg { width: 24px; height: 24px; }
+.bh-reassure__txt { display: flex; flex-direction: column; gap: 15px; align-items: center; }
+.bh-reassure strong { font-family: 'League Spartan', sans-serif; font-size: 20px; font-weight: 600; line-height: 1.1; color: var(--bh-text); }
+.bh-reassure small { font-family: 'Roboto', sans-serif; font-size: 12px; font-weight: 200; color: var(--bh-text); }

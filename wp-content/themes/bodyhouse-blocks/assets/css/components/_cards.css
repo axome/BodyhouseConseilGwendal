@@ -1,0 +1,133 @@
+/* ---- Derniers articles ------------------------------------------------ */
+.bh-latest { min-height: auto; }
+/* surtitre + titre de la section articles : alignés à gauche comme la grille */
+.bh-latest .bh-overline,
+.bh-latest .bh-section-title {
+	max-width: none !important; width: 100% !important;
+	margin-left: 0 !important; margin-right: 0 !important; text-align: left !important;
+}
+
+/* débloque la largeur de la grille (sinon bridée à 1140px par is-layout-constrained) */
+.bh-latest__grid {
+	align-items: stretch; gap: 28px;
+	max-width: none !important; width: 100% !important;
+	margin-left: 0 !important; margin-right: 0 !important;
+}
+.bh-latest__grid > .wp-block-column { align-self: stretch; }
+/* la liste de droite : cartes empilées verticalement */
+.bh-card-list,
+.bh-card-list .wp-block-post-template {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+/* badge catégorie : petit badge fond rosé, texte majuscules */
+.bh-card__cat { margin-bottom: 8px; }
+.bh-card__cat a,
+.bh-card__cat {
+	display: inline-block;
+	text-transform: uppercase;
+	font-family: 'Roboto', sans-serif;
+	font-size: 13px;
+	font-weight: 700;
+	color: var(--bh-text);
+	text-decoration: none;
+	letter-spacing: .05em;
+}
+.bh-card__cat a {
+	background: var(--bh-secondary);
+	padding: 5px 12px;
+	border-radius: 3px;
+}
+.bh-card__cat a:hover { background: var(--bh-primary); }
+
+/* Carte vedette (colonne gauche) — le conteneur crème s'étire jusqu'en bas */
+.bh-latest__grid > .wp-block-column:first-child {
+	display: flex; flex-direction: column;
+}
+.bh-card-feature { flex: 1; display: flex; flex-direction: column; }
+.bh-card-feature .wp-block-post-template { flex: 1; display: flex; flex-direction: column; }
+.bh-card-feature .wp-block-post { flex: 1; }
+.bh-card-feature .wp-block-post {
+	background-color: var(--bh-cream);
+	overflow: hidden;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	border-radius: 5px;
+}
+/* l'image garde sa hauteur, le reste (texte + fond crème) remplit le bas */
+.bh-card-feature .wp-block-post-excerpt { flex: 1; }
+.bh-card-feature .wp-block-post-featured-image {
+	margin: 0;
+}
+.bh-card-feature .wp-block-post-featured-image img {
+	width: 100%;
+	height: 625px;
+	object-fit: cover;
+	border-radius: 0;
+}
+.bh-card-feature .wp-block-post-terms,
+.bh-card-feature .wp-block-post-title,
+.bh-card-feature .wp-block-post-excerpt,
+.bh-card-feature .wp-block-read-more {
+	padding-left: 28px;
+	padding-right: 28px;
+}
+.bh-card-feature .wp-block-post-terms { margin-top: 20px; }
+.bh-card-feature .wp-block-post-title {
+	font-family: 'League Spartan', sans-serif;
+	font-size: 23px !important;
+	font-weight: 400;
+	line-height: 1.2;
+	margin: 10px 0;
+}
+.bh-card-feature .wp-block-post-title a { color: var(--bh-text); text-decoration: none; }
+.bh-card-feature .wp-block-post-excerpt,
+.bh-card-feature .wp-block-post-excerpt p {
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px !important; font-weight: 300 !important; color: #555; line-height: 1.5;
+}
+.bh-card-feature .wp-block-read-more {
+	display: inline-block;
+	margin: 8px 28px 28px;
+	text-transform: uppercase;
+	font-weight: 600;
+	text-decoration: none;
+	color: var(--bh-text);
+}
+.bh-card-feature .wp-block-read-more::after { content: " →"; }
+
+/* Cartes liste (colonne droite, horizontales) — chacune sur fond crème */
+.bh-card-list .bh-card-row {
+	margin-bottom: 0;
+	gap: 22px;
+	background-color: var(--bh-cream);
+	border-radius: 5px;
+	padding: 20px;
+	display: flex !important;
+	align-items: center !important;
+	flex-direction: row !important;
+}
+.bh-card-list .bh-card-row > .wp-block-column { align-self: center; margin: 0; min-width: 0; overflow: hidden; }
+.bh-card-list .bh-card-row > .wp-block-column:first-child { flex-shrink: 0; }
+.bh-card-list .bh-card-row > .wp-block-column:last-child { flex: 1 1 0; min-width: 0; }
+.bh-card-list .wp-block-post-featured-image { margin: 0; }
+.bh-card-list .wp-block-post-featured-image img {
+	width: 100% !important;
+	height: auto !important;
+	aspect-ratio: 1 / 1;
+	object-fit: cover;
+	border-radius: 5px;
+	max-width: none !important;
+}
+.bh-card-list .wp-block-post-title {
+	font-family: 'League Spartan', sans-serif;
+	font-size: 19px !important;
+	font-weight: 400;
+	line-height: 1.25;
+	margin: 6px 0 0;
+}
+.bh-card-list .wp-block-post-title a { color: var(--bh-text); text-decoration: none; }
+.bh-card-list .wp-block-post-title a:hover { color: var(--bh-accent); }

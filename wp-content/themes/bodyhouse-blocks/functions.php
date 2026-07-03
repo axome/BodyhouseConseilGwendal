@@ -71,12 +71,40 @@ add_shortcode( 'bh_drawer_menu', 'bodyhouse_drawer_menu_shortcode' );
  * add_editor_style). Résultat : un rendu strictement identique des deux côtés.
  */
 function bodyhouse_blocks_styles() {
-	wp_enqueue_style(
-		'bodyhouse-blocks-main',
-		get_theme_file_uri( 'assets/css/bodyhouse.css' ),
-		array(),
-		filemtime( get_theme_file_path( 'assets/css/bodyhouse.css' ) ) // cache-buster auto
+	// Architecture 7-1 : chaque partial est enqueue séparément, dans l'ordre
+	// abstracts -> vendors -> base -> layout -> components -> pages -> themes,
+	// via les dépendances $deps (pas d'@import CSS : évite la cascade bloquante).
+	$partials = array(
+		'abstracts-variables' => array( 'abstracts/_variables.css', array() ),
+		'base'                => array( 'base/_base.css', array( 'bodyhouse-blocks-abstracts-variables' ) ),
+		'base-responsive'     => array( 'base/_responsive.css', array( 'bodyhouse-blocks-base' ) ),
+		'base-editor'         => array( 'base/_editor.css', array( 'bodyhouse-blocks-base' ) ),
+		'layout-footer'       => array( 'layout/_footer.css', array( 'bodyhouse-blocks-base' ) ),
+		'header'              => array( 'components/_header.css', array( 'bodyhouse-blocks-base' ) ),
+		'drawer'              => array( 'components/_drawer.css', array( 'bodyhouse-blocks-base' ) ),
+		'buttons'             => array( 'components/_buttons.css', array( 'bodyhouse-blocks-base' ) ),
+		'breadcrumbs'         => array( 'components/_breadcrumbs.css', array( 'bodyhouse-blocks-base' ) ),
+		'hero'                => array( 'components/_hero.css', array( 'bodyhouse-blocks-base' ) ),
+		'reassurance'         => array( 'components/_reassurance.css', array( 'bodyhouse-blocks-base' ) ),
+		'cards'               => array( 'components/_cards.css', array( 'bodyhouse-blocks-base' ) ),
+		'themes-list'         => array( 'components/_themes-list.css', array( 'bodyhouse-blocks-base' ) ),
+		'divider'             => array( 'components/_divider.css', array( 'bodyhouse-blocks-base' ) ),
+		'stats'               => array( 'components/_stats.css', array( 'bodyhouse-blocks-base' ) ),
+		'faq'                 => array( 'components/_faq.css', array( 'bodyhouse-blocks-base' ) ),
+		'page-single'         => array( 'pages/_single.css', array( 'bodyhouse-blocks-base' ) ),
+		'page-archive'        => array( 'pages/_archive.css', array( 'bodyhouse-blocks-base' ) ),
 	);
+
+	foreach ( $partials as $handle => $partial ) {
+		list( $path, $deps ) = $partial;
+
+		wp_enqueue_style(
+			'bodyhouse-blocks-' . $handle,
+			get_theme_file_uri( 'assets/css/' . $path ),
+			$deps,
+			filemtime( get_theme_file_path( 'assets/css/' . $path ) ) // cache-buster auto
+		);
+	}
 }
 add_action( 'enqueue_block_assets', 'bodyhouse_blocks_styles' );
 
@@ -89,6 +117,14 @@ function bodyhouse_blocks_scripts() {
 		get_theme_file_uri( 'assets/js/hero.js' ),
 		array(),
 		filemtime( get_theme_file_path( 'assets/js/hero.js' ) ), // cache-buster auto
+		true
+	);
+
+	wp_enqueue_script(
+		'bodyhouse-blocks-announce',
+		get_theme_file_uri( 'assets/js/announce.js' ),
+		array(),
+		filemtime( get_theme_file_path( 'assets/js/announce.js' ) ), // cache-buster auto
 		true
 	);
 }

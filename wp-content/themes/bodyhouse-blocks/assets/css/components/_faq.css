@@ -1,0 +1,124 @@
+/* ---- FAQ : 2 colonnes (questions à gauche, image à droite) ------------ */
+.bh-faq {
+	padding-top: 31px !important;
+	padding-right: 0 !important;
+	padding-bottom: 80px !important;
+	padding-left: 8% !important;
+}
+.bh-faq__cols {
+	max-width: none !important; width: 100% !important;
+	margin-left: 0 !important; margin-right: 0 !important;
+	gap: 56px;
+}
+/* le cœur WP pose ".wp-block-columns { align-items: initial !important; }" et
+   est chargé après le thème : à spécificité égale (1 classe), il gagnerait sur
+   ".bh-faq__cols". On renforce donc la spécificité avec ".bh-faq" en préfixe. */
+.bh-faq .bh-faq__cols {
+	align-items: stretch !important;
+	position: relative;
+}
+.bh-faq .bh-overline,
+.bh-faq .bh-section-title { text-align: left !important; }
+/* la colonne image s'étire sur toute la hauteur de la ligne (qui grandit avec les
+   questions ouvertes). On surcharge le align-self:center que WP pose via
+   is-vertically-aligned-center, sinon l'image reste centrée à sa hauteur. */
+/* la colonne image ne porte plus rien : l'image est ancrée directement sur
+   .bh-faq__cols (voir ci-dessous). On la neutralise pour qu'elle ne crée
+   aucune hauteur parasite. */
+.bh-faq__imgcol {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+/* Le média est ancré en absolu sur .bh-faq__cols : la hauteur de ce conteneur
+   = la hauteur de la colonne des questions, donc bottom:0 = le bas de la
+   dernière question, même quand des questions s'ouvrent (l'image se révèle en
+   grandissant). left reproduit la géométrie flex 58%/42% avec le gap de 56px ;
+   top:-31px et right:-1% reprennent les débords haut/droite du design.
+   Deux structures portent la classe selon la source : le div à background-image
+   du pattern, OU (page éditée dans Gutenberg) un groupe contenant un bloc image. */
+.bh-faq__imgcol > .bh-faq__media {
+	position: absolute;
+	top: -31px;
+	bottom: 0;
+	left: calc((100% - 56px) * 0.58 + 56px);
+	right: -1%;
+	margin: 0 !important;
+	padding: 0 !important;
+	overflow: hidden;
+	background-size: cover; background-position: center top; background-repeat: no-repeat;
+	border-radius: 0;
+}
+/* variante Gutenberg : le groupe contient figure.bh-faq__media > img avec un
+   aspect-ratio inline — on force la figure et l'img à remplir le conteneur */
+.bh-faq__imgcol > .bh-faq__media figure,
+.bh-faq__imgcol > .bh-faq__media .wp-block-image {
+	position: absolute !important;
+	inset: 0;
+	margin: 0 !important;
+	max-width: none !important;
+}
+.bh-faq__imgcol .bh-faq__media img {
+	width: 100% !important;
+	height: 100% !important;
+	object-fit: cover !important;
+	object-position: center top !important;
+	aspect-ratio: auto !important;
+	border-radius: 0 !important;
+	display: block;
+}
+@media (max-width: 900px) { .bh-faq__imgcol > .bh-faq__media { display: none; } }
+
+/* ---- FAQ items -------------------------------------------------------- */
+.bh-faq__item.wp-block-details {
+	border: none;
+	border-bottom: 1px solid var(--bh-secondary);
+	padding: 0;
+}
+.bh-faq__item > summary {
+	font-family: 'Roboto', sans-serif;
+	font-size: 18px;
+	font-weight: 500;
+	color: var(--bh-text);
+	padding: 5px 0 5px 10px;
+	cursor: pointer;
+	list-style: none;
+	position: relative;
+}
+.bh-faq__item > summary::-webkit-details-marker { display: none; }
+.bh-faq__item > summary::after {
+    content: "";
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    width: 12px;
+    height: 12px;
+    border-right: 5px solid var(--bh-text);
+    border-bottom: 5px solid var(--bh-text);
+    transform: translateY(-70%) rotate(45deg);
+    transform-origin: center;
+    border-radius: 3px;
+}
+.bh-faq__item.is-open > summary::after { transform: translateY(-30%) rotate(-135deg); }
+/* contenu animé (smooth) via grid-template-rows (0fr -> 1fr) : pas de mesure JS de hauteur.
+   Le contenu reste TOUJOURS dans le flux (on neutralise le masquage natif du <details>),
+   l'ouverture/fermeture est pilotée uniquement par la classe .is-open. */
+.bh-faq__content {
+	display: grid !important;
+	grid-template-rows: 0fr;
+	transition: grid-template-rows .35s cubic-bezier(.4,0,.2,1);
+}
+.bh-faq__item.is-open > .bh-faq__content { grid-template-rows: 1fr; }
+.bh-faq__content > .bh-faq__inner { overflow: hidden; min-height: 0; }
+.bh-faq__content .bh-faq__inner > * { padding: 0 15px 0 10px; margin: 0; }
+.bh-faq__content .bh-faq__inner > *:first-child { padding-top: 4px; }
+.bh-faq__content .bh-faq__inner > *:last-child { padding-bottom: 16px; }
+.bh-faq__item p {
+    margin: 0 0 .8em;
+    font-weight: 10;
+    font-size: 15px;
+    line-height: 1.6;
+}
+.bh-faq__item p:last-child { margin-bottom: 0; }
+/* le chevron tourne en douceur */
+.bh-faq__item > summary::after { transition: transform .3s ease; }
+

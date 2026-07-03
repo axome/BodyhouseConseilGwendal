@@ -1,0 +1,13 @@
+/* ---- Dividers --------------------------------------------------------- */
+.bh-divider.wp-block-separator {
+	border: none;
+	border-top: 1px solid var(--bh-secondary);
+	background: none;
+	width: 100%;
+	max-width: 100%;
+	opacity: 1;
+	margin-left: 0;
+	margin-right: 0;
+}
+/* trait doré sous le titre de la section thèmes */
+.bh-themes .bh-divider.wp-block-separator { border-top-color: var(--bh-primary); }

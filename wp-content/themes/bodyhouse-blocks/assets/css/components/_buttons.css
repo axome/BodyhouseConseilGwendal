@@ -1,0 +1,43 @@
+/* ---- Boutons ---------------------------------------------------------- */
+.bh-btn .wp-block-button__link {
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	text-transform: uppercase;
+	line-height: 1;
+	border-radius: 2px;
+	padding: 10px 35px;
+	transition: opacity .2s ease, background-color .2s ease, color .2s ease, transform .25s ease, box-shadow .25s ease;
+}
+
+/* les boutons du hero se soulèvent au survol */
+.bh-hero .bh-btn .wp-block-button__link:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 10px 22px rgba(0,0,0,.25);
+}
+
+.bh-btn--light .wp-block-button__link {
+	background-color: #fff;
+	color: var(--bh-text);
+}
+.bh-btn--light .wp-block-button__link:hover {
+	opacity: .92;
+	transform: translateY(-4px);
+	box-shadow: 0 10px 22px rgba(0,0,0,.25);
+}
+
+.bh-btn--outline .wp-block-button__link {
+	background-color: var(--bh-text);
+	color: #fff;
+	border: 1px solid #fff;
+}
+/* "Par thématiques" : pas de changement de couleur au survol (juste le soulèvement) */
+
+.bh-btn--link .wp-block-button__link {
+	background: transparent;
+	color: var(--bh-text);
+	text-transform: uppercase;
+	text-decoration: underline;
+	padding: 0;
+	border-radius: 0;
+}

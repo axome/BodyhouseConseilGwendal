@@ -1,0 +1,119 @@
+/* ---- Menu off-canvas (drawer) sous le header -------------------------- */
+
+.bh-drawer-overlay {
+	position: fixed; left: 0; right: 0; bottom: 0; top: var(--bh-header-h);
+	background: rgba(0,0,0,.45);
+	opacity: 0; transition: opacity .3s ease; z-index: 998;
+}
+.bh-drawer-overlay.is-open { opacity: 1; }
+
+.bh-drawer {
+	position: fixed; top: var(--bh-header-h); left: 0; bottom: 0;
+	width: 480px; max-width: 92vw;
+	background: var(--bh-cream); color: var(--bh-text);
+	z-index: 999;
+	transform: translateX(-100%);
+	transition: transform .32s cubic-bezier(.4,0,.2,1);
+	display: flex; flex-direction: column; justify-content: space-between;
+	overflow-y: auto;
+}
+.bh-drawer.is-open { transform: translateX(0); }
+.bh-drawer__head { display: none; }
+
+.bh-drawer__nav { padding: 36px 32px 0; }
+.bh-drawer__nav ul { list-style: none; margin: 0; padding: 0; }
+.bh-drawer__nav li { margin: 0; }
+
+/* Menu principal = menu classique WordPress (Apparence → Menus). */
+.bh-drawer__main, .bh-drawer__main .sub-menu { list-style: none; margin: 0; padding: 0; }
+
+.bh-drawer__main > li { display: block; margin: 0; }
+
+/* ligne d'un item : libellé à gauche, chevron poussé à droite */
+.bh-drawer__main > li > a,
+.bh-drawer__main .menu-item-has-children > .bh-row {
+	display: flex; align-items: center; justify-content: space-between;
+}
+.bh-drawer__main .bh-row { gap: 12px; }
+.bh-drawer__main .bh-row > a { flex: 1; }
+
+/* liens principaux : gros, gras, League Spartan */
+.bh-drawer__main a {
+	display: block; padding: 7px 0;
+	font-family: 'League Spartan', sans-serif; font-weight: 600; font-size: 26px;
+	line-height: 1.2; color: var(--bh-text); text-decoration: none;
+	transition: color .2s;
+}
+.bh-drawer__main a:hover { color: var(--bh-accent); }
+
+/* bouton chevron : carré net, aligné à droite */
+.bh-drawer__main .bh-submenu-toggle {
+	background: none; border: 0; cursor: pointer; color: var(--bh-text);
+	display: inline-flex; align-items: center; justify-content: center;
+	width: 44px; height: 44px; flex: 0 0 44px; padding: 0;
+	transition: transform .45s cubic-bezier(.34,1.56,.64,1);
+}
+.bh-drawer__main .bh-submenu-toggle svg { width: 24px; height: 24px; display: block; }
+.bh-drawer__main .menu-item-has-children.is-open > .bh-row .bh-submenu-toggle { transform: rotate(180deg); }
+
+/* sous-menu : le conteneur s'ouvre instantanément (display), les items font l'effet.
+   .is-open = ouvert, .is-closing = en cours de fermeture (le temps de l'anim de sortie) */
+.bh-drawer__main .sub-menu {
+	display: none;
+	padding-left: 16px;
+}
+.bh-drawer__main .menu-item-has-children.is-open > .sub-menu,
+.bh-drawer__main .menu-item-has-children.is-closing > .sub-menu { display: block; }
+
+/* items de sous-menu : séparés par un trait noir fin, texte plus petit */
+.bh-drawer__main .sub-menu > li { border-top: 1px solid #000; }
+.bh-drawer__main .sub-menu a { font-size: 18px; font-weight: 500; padding: 10px 0; }
+
+/* effet d'apparition des items à l'ouverture : fade + léger slide, en cascade */
+.bh-drawer__main .menu-item-has-children.is-open > .sub-menu > li {
+	opacity: 0;
+	transform: translateY(-8px);
+	animation: bh-submenu-in .35s cubic-bezier(.2,.7,.3,1) forwards;
+}
+.bh-drawer__main .menu-item-has-children.is-open > .sub-menu > li:nth-child(1) { animation-delay: .02s; }
+.bh-drawer__main .menu-item-has-children.is-open > .sub-menu > li:nth-child(2) { animation-delay: .06s; }
+.bh-drawer__main .menu-item-has-children.is-open > .sub-menu > li:nth-child(3) { animation-delay: .10s; }
+.bh-drawer__main .menu-item-has-children.is-open > .sub-menu > li:nth-child(4) { animation-delay: .14s; }
+.bh-drawer__main .menu-item-has-children.is-open > .sub-menu > li:nth-child(5) { animation-delay: .18s; }
+.bh-drawer__main .menu-item-has-children.is-open > .sub-menu > li:nth-child(n+6) { animation-delay: .22s; }
+@keyframes bh-submenu-in {
+	to { opacity: 1; transform: translateY(0); }
+}
+
+/* effet de fermeture : fade out + léger slide vers le haut, en cascade inversée */
+.bh-drawer__main .menu-item-has-children.is-closing > .sub-menu > li {
+	opacity: 1;
+	animation: bh-submenu-out .25s cubic-bezier(.4,0,.6,1) forwards;
+}
+.bh-drawer__main .menu-item-has-children.is-closing > .sub-menu > li:nth-child(1) { animation-delay: .10s; }
+.bh-drawer__main .menu-item-has-children.is-closing > .sub-menu > li:nth-child(2) { animation-delay: .08s; }
+.bh-drawer__main .menu-item-has-children.is-closing > .sub-menu > li:nth-child(3) { animation-delay: .06s; }
+.bh-drawer__main .menu-item-has-children.is-closing > .sub-menu > li:nth-child(4) { animation-delay: .04s; }
+.bh-drawer__main .menu-item-has-children.is-closing > .sub-menu > li:nth-child(n+5) { animation-delay: 0s; }
+@keyframes bh-submenu-out {
+	to { opacity: 0; transform: translateY(-8px); }
+}
+
+.bh-drawer__sep { border: none; border-top: 1px solid rgba(36,36,36,.12); margin: 22px 0; }
+
+/* liens secondaires : petits, majuscules, Roboto */
+.bh-drawer__sec a {
+	display: inline-block; padding: 6px 0;
+	font-family: 'Roboto', sans-serif; font-weight: 400; font-size: 13px;
+	text-transform: uppercase; letter-spacing: .04em;
+	color: var(--bh-text); text-decoration: none; transition: color .2s;
+}
+.bh-drawer__sec a:hover { color: var(--bh-accent); }
+
+/* réseaux sociaux en bas */
+.bh-drawer__social {
+	display: flex; align-items: center; justify-content: space-between;
+	padding: 24px 48px 40px; border-top: 1px solid rgba(36,36,36,.12); margin: 32px 0 0;
+}
+.bh-drawer__social a { color: var(--bh-text); display: inline-flex; }
+.bh-drawer__social a:hover { color: var(--bh-accent); }

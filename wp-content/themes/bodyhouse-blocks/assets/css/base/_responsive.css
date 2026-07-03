@@ -1,0 +1,17 @@
+/* ---- Responsive (règles transverses, plusieurs composants) ------------ */
+@media (max-width: 1200px) {
+	.bh-hero__title { font-size: 55px; text-align: center; }
+	.bh-hero__intro { text-align: center; max-width: 100%; }
+	.bh-hero__cols { flex-direction: column; }
+	.bh-hero__btns { justify-content: center; }
+	.bh-quote-card { margin-bottom: 0; }
+}
+
+@media (max-width: 767px) {
+	.bh-hero__title { font-size: 36px; }
+	.bh-section-title { font-size: 29px; }
+	.bh-stat { font-size: 70px; }
+	.bh-btn .wp-block-button__link { padding: 10px 20px; }
+	.bh-latest__grid,
+	.bh-themes__row { flex-direction: column; }
+}

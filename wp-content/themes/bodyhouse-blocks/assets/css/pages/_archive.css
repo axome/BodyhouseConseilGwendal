@@ -1,0 +1,21 @@
+/* ---- Archive / flux d'articles ---------------------------------------- */
+.bh-archive__cards { gap: 32px 24px; }
+.bh-archive-card .wp-block-post-featured-image img {
+	width: 100%;
+	aspect-ratio: 3 / 2;
+	object-fit: cover;
+	border-radius: 5px;
+}
+.bh-archive-card .wp-block-post-title {
+	font-family: 'League Spartan', sans-serif;
+	font-size: 20px;
+	font-weight: 500;
+	line-height: 1.2;
+	margin: 8px 0;
+}
+.bh-archive-card .wp-block-post-title a { color: var(--bh-text); text-decoration: none; }
+.bh-archive-card .wp-block-post-title a:hover { color: var(--bh-accent); }
+.bh-archive-card .wp-block-post-excerpt { font-size: 14px; color: #555; }
+.bh-archive-card .wp-block-post-excerpt__more-link { color: var(--bh-accent); text-transform: uppercase; font-weight: 600; }
+.bh-archive .wp-block-query-pagination a,
+.bh-archive .wp-block-query-pagination span { color: var(--bh-text); margin: 0 6px; }

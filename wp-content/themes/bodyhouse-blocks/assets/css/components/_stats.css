@@ -1,0 +1,26 @@
+/* ---- Observatoire ----------------------------------------------------- */
+/* Section observatoire (fond sombre) — force le blanc, indépendant des presets */
+.bh-observatory .bh-section-title,
+.bh-observatory .bh-overline,
+.bh-observatory .bh-stat,
+.bh-observatory .bh-stat__label,
+.bh-observatory .bh-stat__desc { color: #fff !important; letter-spacing: 0px; }
+.bh-observatory__over { letter-spacing: .14em; margin-bottom: 24px; opacity: .9; }
+
+.bh-stat {
+	font-family: 'Playfair Display', serif;
+	font-size: 120px;
+	font-weight: 400; /* prod déclare 300 mais Playfair n'existe pas <400 → rendu identique */
+	line-height: 1;
+	margin: 24px 0 24px;
+}
+.bh-stat__label {
+	margin: 0 auto;
+	max-width: none;
+	white-space: nowrap;
+	font-family: 'League Spartan', sans-serif !important;
+	font-size: 44px !important;
+	font-weight: 400;
+	line-height: 1.2;
+}
+.bh-stat__desc { opacity: .85; max-width: none; white-space: nowrap; margin: 56px auto 0; font-weight: 300; font-size: 16px; line-height: 1.6; }

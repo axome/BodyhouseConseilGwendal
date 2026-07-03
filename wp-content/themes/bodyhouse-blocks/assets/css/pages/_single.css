@@ -1,0 +1,33 @@
+/* ---- Article (single) ------------------------------------------------- */
+.bh-single__title {
+	font-family: 'League Spartan', sans-serif;
+	font-weight: 700;
+	font-size: 42px;
+	line-height: 1.1;
+	margin: 8px 0 0;
+}
+.bh-single__meta { color: #888; font-size: 14px; }
+.bh-single__body { font-size: 17px; line-height: 1.7; }
+.bh-single__body p { margin: 0 0 1.3em; }
+.bh-single__body h2 {
+	font-family: 'League Spartan', sans-serif;
+	font-weight: 600;
+	font-size: 30px;
+	line-height: 1.2;
+	margin: 1.6em 0 .5em;
+}
+.bh-single__body h3 {
+	font-family: 'League Spartan', sans-serif;
+	font-weight: 500;
+	font-size: 23px;
+	margin: 1.4em 0 .4em;
+}
+.bh-single__body img { border-radius: 6px; }
+.bh-single__body figure { margin: 1.6em 0; }
+.bh-single__body ul,
+.bh-single__body ol { margin: 0 0 1.3em; padding-left: 1.4em; }
+.bh-single__body li { margin-bottom: .4em; }
+.bh-single__body a { color: var(--bh-accent); }
+@media (max-width: 767px) {
+	.bh-single__title { font-size: 30px; }
+}

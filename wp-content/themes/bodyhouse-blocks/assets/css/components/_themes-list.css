@@ -1,0 +1,49 @@
+/* ---- Explorez par thèmes ---------------------------------------------- */
+/* surtitre + titre de la section thèmes : alignés à gauche, même bord que les lignes */
+.bh-themes .bh-overline,
+.bh-themes .bh-section-title {
+	max-width: none !important;
+	width: 100% !important;
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+	text-align: left !important;
+}
+
+/* liste verticale : chaque thème = une ligne (vignette + texte + Découvrir) */
+/* débloque la largeur (sinon bridée à 1140px et centrée par is-layout-constrained) */
+.bh-themes__list {
+	margin-top: 40px;
+	max-width: none !important; width: 100% !important;
+	margin-left: 0 !important; margin-right: 0 !important;
+}
+.bh-theme-row {
+	display: flex; align-items: center; gap: 32px;
+	padding: 30px 0;
+	border-bottom: 1px solid var(--bh-primary);
+	text-decoration: none; color: var(--bh-text);
+	transition: padding-left .2s ease;
+}
+/* trait en haut de la toute première ligne */
+.bh-theme-row:first-child { border-top: 1px solid var(--bh-primary); }
+.bh-theme-row:hover { padding-left: 8px; }
+.bh-theme-row__img { flex: 0 0 182px; }
+.bh-theme-row__img img {
+	width: 182px; height: 182px; object-fit: cover; border-radius: 6px; display: block;
+}
+.bh-theme-row__text { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+.bh-theme-row__title {
+	font-family: 'League Spartan', sans-serif; font-size: 26px; font-weight: 500;
+	line-height: 1.1; color: var(--bh-text);
+}
+.bh-theme-row__desc { font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: 300; line-height: 1.5; color: #6a6a6a; max-width: 640px; }
+.bh-theme-row__cta {
+	flex: 0 0 auto; display: inline-flex; align-items: center; gap: 8px;
+	font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 500;
+	text-transform: uppercase; letter-spacing: .04em; color: var(--bh-text); white-space: nowrap;
+}
+.bh-theme-row:hover .bh-theme-row__title,
+.bh-theme-row:hover .bh-theme-row__cta { color: var(--bh-accent); }
+@media (max-width: 767px) {
+	.bh-theme-row__cta { display: none; }
+	.bh-theme-row__title { font-size: 22px; }
+}
