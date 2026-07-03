@@ -33,7 +33,8 @@
    = la hauteur de la colonne des questions, donc bottom:0 = le bas de la
    dernière question, même quand des questions s'ouvrent (l'image se révèle en
    grandissant). left reproduit la géométrie flex 58%/42% avec le gap de 56px ;
-   top:-31px et right:-1% reprennent les débords haut/droite du design.
+   top:-31px reprend le débord haut du design ; right:0 = bord droit de la page
+   (la section a padding-right:0), un débord négatif créerait un scroll horizontal.
    Deux structures portent la classe selon la source : le div à background-image
    du pattern, OU (page éditée dans Gutenberg) un groupe contenant un bloc image. */
 .bh-faq__imgcol > .bh-faq__media {
@@ -41,7 +42,7 @@
 	top: -31px;
 	bottom: 0;
 	left: calc((100% - 56px) * 0.58 + 56px);
-	right: -1%;
+	right: 0;
 	margin: 0 !important;
 	padding: 0 !important;
 	overflow: hidden;
